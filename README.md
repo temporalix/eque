@@ -1,2 +1,0 @@
-# eque
-the great equilizer
