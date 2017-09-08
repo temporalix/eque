@@ -4,7 +4,7 @@
   "description": "the great equilizer",
   "main": "app/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec",
+    "test": "./node_modules/.bin/mocha",
     "start": "node app/index.js"
   },
   "repository": {
@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/temporalix/eque#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "express": "^4.15.4",
-    "jasmine-node": "^1.14.5",
+    "mocha": "^3.5.0",
     "request": "^2.81.0"
+  },
+  "devDependencies": {
   }
 }
