@@ -2,9 +2,10 @@
   "name": "eque",
   "version": "0.0.1",
   "description": "the great equilizer",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec"
+    "test": "./node_modules/.bin/jasmine-node spec",
+    "start": "node app/index.js"
   },
   "repository": {
     "type": "git",
