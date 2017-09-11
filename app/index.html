@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="application/javascript" src="scripts/calc.js"></script>
+    <style>
+        .output {
+            /* font-size: 30px;
+            display: flex;
+            justify-content: center;
+            margin-top: 20%;
+            flex-direction: column;
+            margin-left: 50%; */
+        }
+
+        .value-list {
+            list-style: none;
+            padding-left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <textarea id="inputData" rows="4" cols="50"></textarea>
+    </div>
+    <div><input type="button" onclick="getResult()" value="Calculate"></div>
+    <div class="output">
+        <div class="people"></div>
+        <div class="values">
+        </div>
+        <div class="total"></div>
+    </div>
+    <script>
+        (function () {
+            // var data = {
+            //     people: 3,
+            //     values: [10, 20, 30]
+            // }
+            // var result = equalize(data.people, data.values);
+            // display(data, result);
+        })();
+
+        function getResult(){
+            var data = document.getElementById("inputData").value;
+            var processedData = readData(data);
+             display(processedData);
+        }
+
+        function display(result) {
+
+            var peopledom = document.querySelector(".people");
+            var valuesdom = document.querySelector(".values");
+            var totaldom = document.querySelector(".total");
+            peopledom.innerHTML = result.people;
+            var list = "";
+            result.values.forEach(function (item) { list = list + "<li>" + item + "</li>" })
+            valuesdom.innerHTML = "<ul class='value-list'>" + list + "</ul>";
+
+
+            totaldom.innerHTML = result.total;
+        }
+
+
+    </script>
+</body>
+
+</html>

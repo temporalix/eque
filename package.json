@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "start": "node app/index.js"
+    "start": "nodemon ./app/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/temporalix/eque#readme",
   "dependencies": {
+    "body-parser": "^1.18.0",
     "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "mocha": "^3.5.0",
     "request": "^2.81.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
