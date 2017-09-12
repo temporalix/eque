@@ -1,10 +1,10 @@
 'use strict';
 
 exports.equalize = function (req, res, next) {
-    // if(req.body){
-    // var err= {success: false, message: "no data sent"}
-    //  return res.send(err);
-    // }
+    if(isEmptyObject(req.body)){
+            res.status(400);
+      return res.send('no data sent');
+    }
     calculate(req.body, function (err, result) {
         console.log(err);
          if (err) {
@@ -16,26 +16,37 @@ exports.equalize = function (req, res, next) {
     });
 };
 
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function calculate(data, callback) {
-     var err;
-    if (data.people === undefined || data.rows === undefined || data.rows.length < 1) {
-          err={message: "invalid entries"};
-       return callback(err, 0);
-    }
+   
+      var err;
+       return callback(err, [0]);
+    // if (data.people === undefined || data.rows === undefined || data.rows.length < 1) {
+    //       err={message: "invalid entries"};
+    //    return callback(err, 0);
+    // }
 
-    var result = 0;
-    if (data.people < 2) {
-        return callback(err, result);
-    }
+    // var result = 0;
+    // if (data.people < 2) {
+    //     return callback(err, result);
+    // }
 
-    var dataTotal = 0;
-    if (data.rows.length)
-        data.rows.forEach(function (item) {
-            dataTotal = dataTotal + item;
-        });
+    // var dataTotal = 0;
+    // if (data.rows.length)
+    //     data.rows.forEach(function (item) {
+    //         dataTotal = dataTotal + item;
+    //     });
 
-    result = ((dataTotal / data.people) * (data.people - 1));
-    callback(err, result);
+    // result = ((dataTotal / data.people) * (data.people - 1));
+    // callback(err, result);
 }
 
 function readData(data) {
