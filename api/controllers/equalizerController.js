@@ -1,34 +1,56 @@
 'use strict';
 
 exports.equalize = function (req, res, next) {
-    if(isEmptyObject(req.body)){
-            res.status(400);
-      return res.send('no data sent');
+    if (isEmptyObject(req.body)) {
+        res.status(400);
+        return res.send('no data sent');
     }
     calculate(req.body, function (err, result) {
-        console.log(err);
-         if (err) {
-             return res.send(err);
-         }
-        // else{
+        if (err) {
+            res.status(400);
+            return res.send(err);
+        }
+
         res.json(result);
-        //}
     });
 };
 
 function isEmptyObject(obj) {
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      return false;
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            return false;
+        }
     }
-  }
-  return true;
+    return true;
 }
 
 function calculate(data, callback) {
-   
-      var err;
-       return callback(err, [0]);
+    var err;
+    var peopleTotal = [];
+    for (var item of data) {
+        peopleTotal.push(item.people);
+    }
+
+    var sumPeople = peopleTotal.reduce(function (first, second) { return first + second; }, 0);
+    if (sumPeople > 1000) {
+        err = "number of students cannot be over 1000";
+        return callback(err, 0);
+    }
+
+    var amountRows = [];
+    for (var item of data) {
+        amountRows.push(item.rows);
+    }
+    var transactionTotals = [];
+    for (var transaction of amountRows) {
+        var sumTransaction = transaction.reduce(function (first, second) { return first + second; }, 0);
+        if (sumTransaction > 1000) {
+            err = "amount spent by a single student cannot be more than 10000";
+            return callback(err, 0);
+        }
+         transactionTotals.push(sumTransaction);
+    }
+
     // if (data.people === undefined || data.rows === undefined || data.rows.length < 1) {
     //       err={message: "invalid entries"};
     //    return callback(err, 0);

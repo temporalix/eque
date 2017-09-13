@@ -56,12 +56,12 @@ describe("Server", function () {
             .end(function (err, res) {
                  res.should.have.status(400);
                 expect(err).to.not.be.null;
-                expect(res.text).to.eql("no data sent");
+                // expect(res.text).to.eql("number of students cannot be over 1000");
                 done();
             });
     });
 
-        it("should return error when the amount spent by a student is greater than 10000", function (done) {
+        it("should return error when the amount spent by a single student is greater than 10000", function (done) {
         chai.request(server)
             .post('/')
             .send([{ people: 1, rows: [5000,5001] }])
