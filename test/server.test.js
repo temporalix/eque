@@ -56,7 +56,7 @@ describe("Server", function () {
             .end(function (err, res) {
                  res.should.have.status(400);
                 expect(err).to.not.be.null;
-                // expect(res.text).to.eql("number of students cannot be over 1000");
+                 expect(res.text).to.eql("number of students cannot be over 1000");
                 done();
             });
     });
@@ -68,7 +68,7 @@ describe("Server", function () {
             .end(function (err, res) {
                  res.should.have.status(400);
                 expect(err).to.not.be.null;
-                expect(res.text).to.eql("no data sent");
+                expect(res.text).to.eql("amount spent by a single student cannot be more than 10000");
                 done();
             });
     });
